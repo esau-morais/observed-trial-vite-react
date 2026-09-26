@@ -1,0 +1,24 @@
+name: Check run probe
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+  checks: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh api -X POST "repos/$REPO/check-runs" \
+            -f name="Observed probe (workflow token)" -f head_sha="$HEAD_SHA" \
+            -f status=completed -f conclusion=neutral \
+            -f details_url="https://github.com/$REPO" \
+            -f 'output[title]=Probe' -f 'output[summary]=Posted with the workflow token.' \
+            --jq '{id, app: .app.slug, suite: .check_suite.id, html_url}'
