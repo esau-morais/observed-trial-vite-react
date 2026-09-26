@@ -19,8 +19,10 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: esau-morais/observed@650c03a9c9737b1e9ee110593b2027abbb07c12e
+      - uses: esau-morais/observed@f24d2649a4d75bb783d2c41b001ccb13da5faa81
         with:
           project: .
           base: ${{ github.event.pull_request.base.sha }}
           artifact-name: observed-${{ matrix.os }}
+          github-app-id: ${{ vars.OBSERVED_APP_ID }}
+          github-app-private-key: ${{ secrets.OBSERVED_APP_PRIVATE_KEY }}
