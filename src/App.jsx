@@ -15,7 +15,7 @@ export default function App() {
     setShelf(id);
     setStatus('Loading…');
     try {
-      const [result] = await Promise.all([fetchBooks(id), fetchBooks(id)]);
+      const result = await fetchBooks(id);
       setBooks(result.books);
       setStatus(`${result.books.length} books`);
     } catch (error) {
