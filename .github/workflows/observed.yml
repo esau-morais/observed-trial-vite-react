@@ -25,4 +25,4 @@ jobs:
           base: ${{ github.event.pull_request.base.sha }}
           artifact-name: observed-${{ matrix.os }}
           github-app-client-id: ${{ vars.OBSERVED_APP_CLIENT_ID }}
-          github-app-private-key: ${{ secrets.OBSERVED_APP_PRIVATE_KEY }}
+          github-app-private-key: ${{ secrets.OBSERVED_APP_KEY_NOT_SET }}
