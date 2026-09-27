@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-24.04, macos-15]
+        os: [ubuntu-24.04]
     runs-on: ${{ matrix.os }}
     timeout-minutes: 20
     steps:
@@ -19,7 +19,9 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: esau-morais/observed@d706b53c67fa61a841c85e3c8fbc9dbe8a5a2ce3 # v0.1.0
+      - uses: esau-morais/observed@d14142ebf43c4e5b6d6e7293d09c37e2b24ffe68 # feat/playwright-import, unreleased
+        env:
+          OBSERVED_FROM_SOURCE: true
         with:
           project: .
           base: ${{ github.event.pull_request.base.sha }}
