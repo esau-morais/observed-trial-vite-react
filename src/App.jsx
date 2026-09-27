@@ -6,10 +6,6 @@ const shelves = [
   { id: 'finished', label: 'Finished' },
 ];
 
-function countShelfView(id) {
-  window.shelfViews[id] = (window.shelfViews[id] ?? 0) + 1;
-}
-
 export default function App() {
   const [shelf, setShelf] = useState(null);
   const [books, setBooks] = useState([]);
@@ -26,7 +22,6 @@ export default function App() {
       setBooks([]);
       setStatus(`Could not load books: ${error.message}`);
     }
-    countShelfView(id);
   }
 
   return (
