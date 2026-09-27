@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: esau-morais/observed@91f20453822a6e017ea3e1b5514e6125c428e93d # feat/brief-slack, unreleased
+      - uses: esau-morais/observed@16f9abe5108dc33e984181dde4e5bd5cfaa6b1ba # feat/brief-slack, unreleased
         env:
           OBSERVED_FROM_SOURCE: true
         with:
