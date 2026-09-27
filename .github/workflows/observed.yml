@@ -26,7 +26,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: esau-morais/observed@c76c6103ae10f2f3df2947634a85b15dcae89cee # feat/workflow-token-delivery, unreleased
+      - uses: esau-morais/observed@ff00791ab336803a31c486213e2c4a5522f3e09f # feat/workflow-token-delivery, unreleased
         env:
           OBSERVED_FROM_SOURCE: true
         with:
