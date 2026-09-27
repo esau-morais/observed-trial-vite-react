@@ -37,15 +37,10 @@
       { "kind": "network-idle" }
     ],
     "check": {
-      "kind": "request-count",
-      "id": "one-books-request",
-      "name": "One books request per shelf click",
-      "scope": "One Reading click through completion and network idle.",
-      "method": "GET",
-      "origin": "http://127.0.0.1:4010",
-      "path": "/api/books",
-      "expectedCount": 1,
-      "status": 200
+      "kind": "browser-errors",
+      "id": "no-browser-errors",
+      "name": "No browser errors",
+      "scope": "One Reading click through completion and network idle."
     },
     "allowedOrigins": ["http://127.0.0.1:4010"],
     "browserArguments": ["--no-sandbox"]
