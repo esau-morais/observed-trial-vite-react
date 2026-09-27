@@ -18,23 +18,50 @@
     ]
   },
   "setup": [
-    ["npm", "install"],
-    ["npm", "run", "build"]
+    [
+      "npm",
+      "install"
+    ],
+    [
+      "npm",
+      "run",
+      "build"
+    ]
   ],
-  "start": ["node", "observed-server.mjs"],
-  "ready": { "path": "/", "status": 200 },
+  "start": "node observed-server.mjs",
+  "ready": {
+    "path": "/",
+    "status": 200
+  },
   "capture": {
     "name": "Open Reading shelf",
     "path": "/",
     "ready": [
-      { "kind": "wait-text", "text": "Pick a shelf" },
-      { "kind": "network-idle" }
+      {
+        "kind": "wait-text",
+        "text": "Pick a shelf"
+      },
+      {
+        "kind": "network-idle"
+      }
     ],
     "steps": [
-      { "kind": "click-role", "role": "button", "name": "Reading" },
-      { "kind": "wait-text", "text": "2 books" },
-      { "kind": "wait-text", "text": "The Left Hand of Darkness" },
-      { "kind": "network-idle" }
+      {
+        "kind": "click-role",
+        "role": "button",
+        "name": "Reading"
+      },
+      {
+        "kind": "wait-text",
+        "text": "2 books"
+      },
+      {
+        "kind": "wait-text",
+        "text": "The Left Hand of Darkness"
+      },
+      {
+        "kind": "network-idle"
+      }
     ],
     "check": {
       "kind": "request-count",
@@ -47,7 +74,11 @@
       "expectedCount": 1,
       "status": 200
     },
-    "allowedOrigins": ["http://127.0.0.1:4010"],
-    "browserArguments": ["--no-sandbox"]
+    "allowedOrigins": [
+      "http://127.0.0.1:4010"
+    ],
+    "browserArguments": [
+      "--no-sandbox"
+    ]
   }
 }
