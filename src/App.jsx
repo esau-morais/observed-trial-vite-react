@@ -39,6 +39,8 @@ export default function App() {
           </button>
         ))}
       </nav>
+      <label htmlFor="book-filter">Filter books</label>
+      <input id="book-filter" type="search" />
       <p role="status">{status}</p>
       <ul>
         {books.map((book) => (
