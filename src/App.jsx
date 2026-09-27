@@ -6,6 +6,18 @@ const shelves = [
   { id: 'finished', label: 'Finished' },
 ];
 
+function BookList({ books }) {
+  return (
+    <ul aria-label={`${books.length} books`}>
+      {books.map((book) => (
+        <li key={book.id}>
+          <strong>{book.title}</strong> <span>{book.author}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export default function App() {
   const [shelf, setShelf] = useState(null);
   const [books, setBooks] = useState([]);
@@ -40,13 +52,7 @@ export default function App() {
         ))}
       </nav>
       <p role="status">{status}</p>
-      <ul>
-        {books.map((book) => (
-          <li key={book.id}>
-            <strong>{book.title}</strong> <span>{book.author}</span>
-          </li>
-        ))}
-      </ul>
+      <BookList books={books} />
     </main>
   );
 }

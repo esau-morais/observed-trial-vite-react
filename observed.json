@@ -19,9 +19,9 @@
   },
   "setup": [
     ["npm", "install"],
-    ["npm", "run", "build"]
+    ["sh", "-c", "VITE_API_URL=http://127.0.0.1:4015 npm run build"]
   ],
-  "start": ["node", "observed-server.mjs"],
+  "start": ["sh", "-c", "API_PORT=4015 exec node observed-server.mjs"],
   "ready": { "path": "/", "status": 200 },
   "capture": {
     "name": "Open Reading shelf",
@@ -36,18 +36,28 @@
       { "kind": "wait-text", "text": "The Left Hand of Darkness" },
       { "kind": "network-idle" }
     ],
-    "check": {
-      "kind": "request-count",
-      "id": "one-books-request",
-      "name": "One books request per shelf click",
-      "scope": "One Reading click through completion and network idle.",
-      "method": "GET",
-      "origin": "http://127.0.0.1:4010",
-      "path": "/api/books",
-      "expectedCount": 1,
-      "status": 200
-    },
-    "allowedOrigins": ["http://127.0.0.1:4010"],
+    "checks": [
+      {
+        "kind": "request-count",
+        "id": "one-books-request",
+        "name": "One books request per shelf click",
+        "scope": "One Reading click through completion and network idle.",
+        "method": "GET",
+        "origin": "http://127.0.0.1:4015",
+        "path": "/api/books",
+        "expectedCount": 1,
+        "status": 200
+      },
+      {
+        "kind": "react-renders",
+        "id": "book-list-renders",
+        "name": "BookList renders at most twice",
+        "scope": "One Reading click through the loaded list, in a separate React DevTools run.",
+        "component": "BookList",
+        "maxRenders": 2
+      }
+    ],
+    "allowedOrigins": ["http://127.0.0.1:4015"],
     "browserArguments": ["--no-sandbox"]
   }
 }
