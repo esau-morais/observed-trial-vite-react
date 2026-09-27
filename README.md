@@ -20,3 +20,4 @@ The frontend calls the API at `VITE_API_URL`, defaulting to `http://127.0.0.1:40
 npm run build
 npm run preview
 ```
+<!-- onboarding probe -->
