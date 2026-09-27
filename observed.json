@@ -18,36 +18,89 @@
     ]
   },
   "setup": [
-    ["npm", "install"],
-    ["npm", "run", "build"]
+    [
+      "npm",
+      "install"
+    ],
+    [
+      "npm",
+      "run",
+      "build"
+    ]
   ],
-  "start": ["node", "observed-server.mjs"],
-  "ready": { "path": "/", "status": 200 },
+  "start": [
+    "node",
+    "observed-server.mjs"
+  ],
+  "ready": {
+    "path": "/",
+    "status": 200
+  },
   "capture": {
     "name": "Open Reading shelf",
     "path": "/",
     "ready": [
-      { "kind": "wait-text", "text": "Pick a shelf" },
-      { "kind": "network-idle" }
+      {
+        "kind": "wait-text",
+        "text": "Pick a shelf"
+      },
+      {
+        "kind": "network-idle"
+      }
     ],
     "steps": [
-      { "kind": "click-role", "role": "button", "name": "Reading" },
-      { "kind": "wait-text", "text": "2 books" },
-      { "kind": "wait-text", "text": "The Left Hand of Darkness" },
-      { "kind": "network-idle" }
+      {
+        "kind": "click-role",
+        "role": "button",
+        "name": "Reading"
+      },
+      {
+        "kind": "wait-text",
+        "text": "2 books"
+      },
+      {
+        "kind": "wait-text",
+        "text": "The Left Hand of Darkness"
+      },
+      {
+        "kind": "network-idle"
+      }
     ],
-    "check": {
-      "kind": "request-count",
-      "id": "one-books-request",
-      "name": "One books request per shelf click",
-      "scope": "One Reading click through completion and network idle.",
-      "method": "GET",
-      "origin": "http://127.0.0.1:4010",
-      "path": "/api/books",
-      "expectedCount": 1,
-      "status": 200
-    },
-    "allowedOrigins": ["http://127.0.0.1:4010"],
-    "browserArguments": ["--no-sandbox"]
+    "allowedOrigins": [
+      "http://127.0.0.1:4010"
+    ],
+    "browserArguments": [
+      "--no-sandbox"
+    ],
+    "checks": [
+      {
+        "kind": "request-count",
+        "id": "one-books-request",
+        "name": "One books request per shelf click",
+        "scope": "One Reading click through completion and network idle.",
+        "method": "GET",
+        "origin": "http://127.0.0.1:4010",
+        "path": "/api/books",
+        "expectedCount": 1,
+        "status": 200
+      },
+      {
+        "kind": "performance",
+        "id": "page-load-lcp",
+        "name": "Largest contentful paint stays fast",
+        "scope": "Open the page and pick the Reading shelf; LCP of the page before the click.",
+        "metric": "lcp",
+        "max": 250,
+        "maxIncreasePercent": 20
+      }
+    ],
+    "collectors": [
+      {
+        "kind": "performance",
+        "samples": 5,
+        "warmup": 1,
+        "inspect": true
+      }
+    ]
   }
 }
