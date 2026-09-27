@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: esau-morais/observed@d14142ebf43c4e5b6d6e7293d09c37e2b24ffe68 # feat/playwright-import, unreleased
+      - uses: esau-morais/observed@920022fc3fbbc5ac6efe7d73246d2f2eb48700f7 # feat/playwright-import, unreleased
         env:
           OBSERVED_FROM_SOURCE: true
         with:
