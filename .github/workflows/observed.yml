@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: esau-morais/observed@18b42c52a15a476c90a54e4d5267c7a1646434dd # main, unreleased
+      - uses: esau-morais/observed@d4c783dd5d8582237bee073390d2566362a7eefc # feat/source-anchors, unreleased
         env:
           OBSERVED_FROM_SOURCE: true
         with:
