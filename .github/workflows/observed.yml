@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: esau-morais/observed@1ba4b7f06a0363e0b8d36b899e8e03da44e02732 # feat/report-focus, unreleased
+      - uses: esau-morais/observed@9b129463885a969b340df3cbca02b1a29f7ba84c # feat/report-focus, unreleased
         env:
           OBSERVED_FROM_SOURCE: true
         with:
