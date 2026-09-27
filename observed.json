@@ -21,7 +21,8 @@
   },
   "setup": [
     ["npm", "install"],
-    ["npm", "run", "build"]
+    ["npm", "run", "build"],
+    ["npx", "playwright", "install", "ffmpeg"]
   ],
   "start": ["node", "observed-server.mjs"],
   "ready": { "path": "/", "status": 200 },
