@@ -25,6 +25,7 @@ jobs:
         with:
           project: .
           base: ${{ github.event.pull_request.base.sha }}
+          timeout: 300000
           artifact-name: observed-${{ matrix.os }}
           github-app-client-id: ${{ vars.OBSERVED_APP_CLIENT_ID }}
           github-app-private-key: ${{ secrets.OBSERVED_APP_PRIVATE_KEY }}
