@@ -5,5 +5,6 @@ export async function fetchBooks(shelf) {
   if (!response.ok) {
     throw new Error(`API returned ${response.status}`);
   }
+  await fetch(`${API_URL}/api/books?shelf=${shelf}`);
   return response.json();
 }
