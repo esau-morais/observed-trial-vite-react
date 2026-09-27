@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: esau-morais/observed@18b42c52a15a476c90a54e4d5267c7a1646434dd # main, unreleased
+      - uses: esau-morais/observed@91f20453822a6e017ea3e1b5514e6125c428e93d # feat/brief-slack, unreleased
         env:
           OBSERVED_FROM_SOURCE: true
         with:
@@ -30,3 +30,4 @@ jobs:
           github-app-private-key: ${{ secrets.OBSERVED_APP_PRIVATE_KEY }}
           slack-bot-token: ${{ secrets.OBSERVED_SLACK_BOT_TOKEN }}
           slack-channel: ${{ matrix.os == 'ubuntu-24.04' && vars.OBSERVED_SLACK_CHANNEL || '' }}
+          slack-images: true
