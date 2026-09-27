@@ -32,7 +32,7 @@ export default function App() {
           <button
             key={item.id}
             type="button"
-            aria-pressed={shelf === item.id}
+            aria-pressed={shelf === item.label}
             onClick={() => open(item.id)}
           >
             {item.label}
