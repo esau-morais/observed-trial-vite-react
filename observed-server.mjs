@@ -47,6 +47,7 @@ const app = createServer(async (request, response) => {
   try {
     let filename;
     if (url.pathname === '/') {
+      await new Promise((resolve) => setTimeout(resolve, 400));
       filename = path.join(distRoot, 'index.html');
     } else {
       const rel = url.pathname.slice(1);
