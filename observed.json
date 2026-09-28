@@ -4,24 +4,23 @@
   "source": {
     "entry": "src/App.jsx",
     "paths": [
-      "src/App.jsx",
-      "src/api.js",
-      "src/main.jsx",
-      "src/app.css",
+      "src",
+      "api",
       "index.html",
       "vite.config.js",
       "package.json",
-      "package-lock.json",
-      "api/server.js",
-      "api/books.json",
-      "observed-server.mjs"
+      "package-lock.json"
     ]
   },
   "setup": [
-    ["npm", "install"],
+    ["npm", "ci"],
     ["npm", "run", "build"]
   ],
-  "start": ["node", "observed-server.mjs"],
+  "start": [
+    "sh",
+    "-c",
+    "node api/server.js & exec node_modules/.bin/vite preview --host 127.0.0.1 --port \"$PORT\" --strictPort"
+  ],
   "ready": { "path": "/", "status": 200 },
   "capture": {
     "name": "Open Reading shelf",
@@ -32,21 +31,30 @@
     ],
     "steps": [
       { "kind": "click-role", "role": "button", "name": "Reading" },
-      { "kind": "wait-text", "text": "2 books" },
-      { "kind": "wait-text", "text": "The Left Hand of Darkness" },
+      { "kind": "wait-selector", "selector": "main ul li" },
       { "kind": "network-idle" }
     ],
-    "check": {
-      "kind": "request-count",
-      "id": "one-books-request",
-      "name": "One books request per shelf click",
-      "scope": "One Reading click through completion and network idle.",
-      "method": "GET",
-      "origin": "http://127.0.0.1:4010",
-      "path": "/api/books",
-      "expectedCount": 1,
-      "status": 200
-    },
+    "checks": [
+      {
+        "kind": "request-count",
+        "id": "one-books-request",
+        "name": "One books request per shelf click",
+        "scope": "One Reading click through the book list and network idle",
+        "method": "GET",
+        "origin": "http://127.0.0.1:4010",
+        "path": "/api/books",
+        "expectedCount": 1,
+        "status": 200
+      },
+      {
+        "kind": "text",
+        "id": "reading-shelf-count",
+        "name": "Reading shelf shows its book count",
+        "scope": "Status line after opening the Reading shelf",
+        "selector": "p[role=\"status\"]",
+        "expectedText": "2 books"
+      }
+    ],
     "allowedOrigins": ["http://127.0.0.1:4010"],
     "browserArguments": ["--no-sandbox"]
   }
